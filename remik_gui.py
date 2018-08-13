@@ -94,8 +94,8 @@ def wyniki():
     suma = 0
     for w, n in zip(entries, przegr):
         suma += int(w.get())
-        wynikidict[n] = w.get()
-    wynikidict[wygr] = suma
+        wynikidict[n] -= int(w.get())
+    wynikidict[wygr] += suma
     print(wygr)
 
 
