@@ -2,7 +2,7 @@ from tkinter import *
 
 window = Tk()
 window.title("Remik")
-window.geometry('350x200')
+window.geometry('500x300')
 
 btn_list = []
 entries = []
@@ -85,7 +85,6 @@ def onClick(event):
             przegr.append(gracz)
         elif gracz == btn.cget("text"):
             wygr = gracz
-            print(wygr)
     dalej = Button(window, text="OK", command=wyniki)
     dalej.grid(column=0, row=y + 1)
 
@@ -98,12 +97,12 @@ def wyniki():
     wynikidict[wygr] += suma
     print(wygr)
 
-
-
     print(wynikidict)
 
     wynikLabel = Label(window, text="Wyniki: ")
-    wynikLabel.grid(column=0, row=8)
+    wynikLabel.grid(column=0, row=10)
+    for oo in wynikidict:
+        print(oo + " : " + str(wynikidict[oo]))
 
 
 lbl = Label(window, text="Ile osób będzie grać")
