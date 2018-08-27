@@ -7,6 +7,7 @@ window.geometry('500x300')
 btn_list = []
 entries = []
 gracze = []
+runda = 0
 wynikidict = {}
 przegr = []
 wygr = ""
@@ -32,6 +33,9 @@ def inputGraczy():
 def Destroy():
     x = 1
     y = 1
+    global runda
+    runda += 1
+    print(runda)
     for i in entries:
         print(i)
         print(i.get())
@@ -42,7 +46,7 @@ def Destroy():
     for widget in window.winfo_children():
         widget.destroy()
 
-    run = Label(window, text="Runda" + str(x))
+    run = Label(window, text="Runda " + str(runda))
     run.grid(column=0, row=0)
 
     kto = Label(window, text="Kto wygrał?")
@@ -55,6 +59,28 @@ def Destroy():
         btn_list.append(wygr)
         x += 1
 
+def Destroy2():
+    x = 1
+    y = 1
+    global runda
+    runda += 1
+
+    window.winfo_children()
+    for widget in window.winfo_children():
+        widget.destroy()
+
+    run = Label(window, text="Runda " + str(runda))
+    run.grid(column=0, row=0)
+
+    kto = Label(window, text="Kto wygrał?")
+    kto.grid(column=0, row=1)
+
+    for g in gracze:
+        wygr = Button(window, text=g)
+        wygr.grid(column=1 + x, row=1)
+        wygr.bind("<Button-1>", onClick)
+        btn_list.append(wygr)
+        x += 1
 # def Wygrany():
 #   ile = Label(window, text="Ile kart zostało?")
 #    ile.grid(column=0, row=2)
@@ -91,6 +117,7 @@ def onClick(event):
 
 def wyniki():
     suma = 0
+    i = 11
     for w, n in zip(entries, przegr):
         suma += int(w.get())
         wynikidict[n] -= int(w.get())
@@ -102,7 +129,11 @@ def wyniki():
     wynikLabel = Label(window, text="Wyniki: ")
     wynikLabel.grid(column=0, row=10)
     for oo in wynikidict:
-        print(oo + " : " + str(wynikidict[oo]))
+        wyni = Label(window, text=oo + " : " + str(wynikidict[oo]))
+        wyni.grid(column=0, row=i)
+        i += 1
+    nastepna = Button(window, text="Następna runda", command=Destroy2)
+    nastepna.grid(column=0, row=i + 1)
 
 
 lbl = Label(window, text="Ile osób będzie grać")
