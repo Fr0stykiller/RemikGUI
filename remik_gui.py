@@ -1,4 +1,5 @@
 from tkinter import *
+import operator
 
 window = Tk()
 window.title("Remik")
@@ -58,6 +59,7 @@ def Destroy():
         wygr.bind("<Button-1>", onClick)
         btn_list.append(wygr)
         x += 1
+
 
 def Destroy2():
     x = 1
@@ -134,6 +136,23 @@ def wyniki():
         i += 1
     nastepna = Button(window, text="Następna runda", command=Destroy2)
     nastepna.grid(column=0, row=i + 1)
+    koniec = Button(window, text="Koniec gry", command=Kon)
+    koniec.grid(column=1, row=i + 1)
+
+
+def Kon():
+    t = Toplevel(height=300, width=300)
+    t.title("Wygrani")
+    o = 1
+    zwyciezca = Label(t, text="Zwycięzcą jest " +
+                      str(max(wynikidict.items(), key=operator.itemgetter(1))[0]))
+    zwyciezca.grid(column=0, row=0)
+    sorted_by_value = sorted(wynikidict.items(), key=lambda kv: -kv[1])
+    print(sorted_by_value )
+    for oo in sorted_by_value:
+        reszta = Label(t, text=oo)
+        reszta.grid(column=0, row=o)
+        o += 1
 
 
 lbl = Label(window, text="Ile osób będzie grać")
