@@ -3,7 +3,7 @@ import operator
 
 window = Tk()
 window.title("Remik")
-window.geometry('500x300')
+window.geometry('500x600')
 
 btn_list = []
 entries = []
@@ -96,6 +96,7 @@ def Destroy2():
 def onClick(event):
     del entries[:]
     global wygr
+    global y
     y = 4
     btn = event.widget  # event.widget is the wid get that called the event
     print(btn.cget("text"))  # Print the text for the selected button
@@ -118,8 +119,9 @@ def onClick(event):
 
 
 def wyniki():
+    global y
     suma = 0
-    i = 11
+    print(str(y))
     for w, n in zip(entries, przegr):
         suma += int(w.get())
         wynikidict[n] -= int(w.get())
@@ -129,15 +131,15 @@ def wyniki():
     print(wynikidict)
 
     wynikLabel = Label(window, text="Wyniki: ")
-    wynikLabel.grid(column=0, row=10)
+    wynikLabel.grid(column=0, row=y + 2)
     for oo in wynikidict:
         wyni = Label(window, text=oo + " : " + str(wynikidict[oo]))
-        wyni.grid(column=0, row=i)
-        i += 1
+        wyni.grid(column=0, row=y + 3)
+        y += 1
     nastepna = Button(window, text="Następna runda", command=Destroy2)
-    nastepna.grid(column=0, row=i + 1)
+    nastepna.grid(column=0, row=y + 4)
     koniec = Button(window, text="Koniec gry", command=Kon)
-    koniec.grid(column=1, row=i + 1)
+    koniec.grid(column=1, row=y + 4)
 
 
 def Kon():
