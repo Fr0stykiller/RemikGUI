@@ -1,3 +1,5 @@
+#TKinter - Przkonwertować do QT
+
 from tkinter import *
 import operator
 
