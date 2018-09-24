@@ -96,6 +96,7 @@ def Destroy2():
 
 
 def onClick(event):
+    del przegr[:]
     del entries[:]
     global wygr
     global y
@@ -123,7 +124,7 @@ def onClick(event):
 def wyniki():
     global y
     suma = 0
-    print(str(y))
+    print(przegr)
     for w, n in zip(entries, przegr):
         suma += int(w.get())
         wynikidict[n] -= int(w.get())
@@ -152,7 +153,7 @@ def Kon():
                       str(max(wynikidict.items(), key=operator.itemgetter(1))[0]))
     zwyciezca.grid(column=0, row=0)
     sorted_by_value = sorted(wynikidict.items(), key=lambda kv: -kv[1])
-    print(sorted_by_value )
+    print(sorted_by_value)
     for oo in sorted_by_value:
         reszta = Label(t, text=oo)
         reszta.grid(column=0, row=o)
